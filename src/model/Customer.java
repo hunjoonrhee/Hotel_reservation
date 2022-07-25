@@ -18,7 +18,8 @@ public class Customer {
             throw new IllegalArgumentException("the email does not match the format 'name@domain.com'");
         }
     }
-    public String getEmail(){
+
+     public String getEmail(){
         return this.email;
     }
 

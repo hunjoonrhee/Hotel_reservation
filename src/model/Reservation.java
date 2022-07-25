@@ -8,7 +8,6 @@ public class Reservation {
     private final Date checkInDate;
     private final Date checkOutDate;
 
-
     public Reservation(Customer customer, IRoom room, Date checkInDate, Date checkOutDate){
         this.customer=customer;
         this.room = room;
@@ -16,23 +15,19 @@ public class Reservation {
         this.checkOutDate = checkOutDate;
     }
 
-    public IRoom getRoom() {
-        return this.room;
-    }
-
     public Date getCheckInDate() {
-        return this.checkInDate;
+        return checkInDate;
     }
 
     public Date getCheckOutDate() {
-        return this.checkOutDate;
+        return checkOutDate;
     }
 
-    @Override
-    public String toString() {
-        return "Customer: " + this.customer.toString()
-                + "\nRoom: " + this.room.toString()
-                + "\nCheckIn Date: " + this.checkInDate
-                + "\nCheckOut Date: " + this.checkOutDate;
+    public IRoom getRoom() {
+        return room;
+    }
+
+    public String toString(){
+        return "Reservation for the Customer " + customer + ": " + "Room " + room + " check in " + checkInDate + " check out " + checkOutDate;
     }
 }

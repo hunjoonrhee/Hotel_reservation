@@ -9,25 +9,36 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomerService {
+
     private static final CustomerService SINGLETON = new CustomerService();
-
-    private final Map<String, Customer> customers = new HashMap<>();
-
-    private CustomerService() {}
+    private static final Map<String, Customer> customers = new HashMap<>();
+    public CustomerService(){}
 
     public static CustomerService getSingleton() {
         return SINGLETON;
     }
 
-    public void addCustomer(final String email, final String firstName, final String lastName) {
-        customers.put(email, new Customer(firstName, lastName, email));
+    public void addCustomer(String email, String firstName, String lastName){
+        if(customers.isEmpty()){
+            customers.put(email, new Customer(firstName, lastName, email));
+        }else{
+            if(!customers.containsKey(email)){
+                customers.put(email, new Customer(firstName, lastName, email));
+            }else{
+                System.out.println("This email is already used by other user.");
+            }
+        }
     }
-
-    public Customer getCustomer(final String customerEmail) {
+    public Customer getCustomer(String customerEmail){
         return customers.get(customerEmail);
     }
 
-    public Collection<Customer> getAllCustomers() {
-        return customers.values();
+    public Collection<Customer> getAllCustomers(){
+        ArrayList<Customer> AllCustomers = new ArrayList<Customer>();
+        for(String key:customers.keySet()){
+            AllCustomers.add(customers.get(key));
+        }
+        return AllCustomers;
     }
+
 }

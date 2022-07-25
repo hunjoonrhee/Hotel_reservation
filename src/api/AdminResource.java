@@ -11,34 +11,31 @@ import java.util.List;
 
 public class AdminResource {
 
-    private static final AdminResource SINGLETON = new AdminResource();
-
+    public static final AdminResource SINGLETON = new AdminResource();
     private final CustomerService customerService = CustomerService.getSingleton();
-    private final ReservationService reservationService = ReservationService.getSingleton();
+    private static final ReservationService reservationService = ReservationService.getSingleton();
+    public AdminResource(){
 
-    private AdminResource() {}
+    }
 
-    public static AdminResource getSingleton() {
+    public static AdminResource getSingleton (){
         return SINGLETON;
     }
 
-    public Customer getCustomer(String email) {
+    public Customer getCustomer(String email){
         return customerService.getCustomer(email);
-    }
 
-    public void addRoom(List<IRoom> rooms) {
+    }
+    public static void addRoom(List<IRoom> rooms){
         rooms.forEach(reservationService::addRoom);
     }
-
-    public Collection<IRoom> getAllRooms() {
-        return reservationService.getAllRooms();
+    public Collection<IRoom> getAllRooms(){
+        return reservationService.getRooms();
     }
-
-    public Collection<Customer> getAllCustomers() {
+    public Collection<Customer> getAllCustomers(){
         return customerService.getAllCustomers();
     }
-
-    public void displayAllReservations() {
+    public void displayAllReservations(){
         reservationService.printAllReservation();
     }
 }
